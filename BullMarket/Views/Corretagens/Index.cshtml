@@ -1,0 +1,59 @@
+﻿@{
+    ViewData["Title"] = "Corretagem";
+}
+
+<h2>Corretagem</h2>
+
+<p>
+    <button type="button" onclick="CarregaCreate()" class="btn btn-primary">Adicionar corretagem</button>
+</p>
+
+<div id="lista"></div>
+
+<div class="modal" id="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div id="corpoModal"></div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            lista();
+        });
+
+        function lista() {
+            $("#lista").load("/Corretagens/Lista");
+        }
+
+        function CarregaCreate() {
+            $("#corpoModal").load("/Corretagens/CarregaCreate");
+            $("#modal").modal('show')
+        }
+
+        function Create() {
+            var objeto = $("#form").serialize()
+            $.post("/Corretagens/Create", objeto, function (data) {
+                lista();
+                $("#modal").modal('hide')
+                $("#corpoModal").html("")
+                alert(data.mensagem)
+            });
+        }
+
+        function CarregaUpdate(id) {
+            $("#corpoModal").load("/Corretagens/CarregaUpdate/" + id);
+            $("#modal").modal('show')
+        }
+
+        function Update() {
+            var objeto = $("#form").serialize()
+            $.post("/Corretagens/Update", objeto, function (data) {
+                lista();
+                $("#modal").modal('hide')
+                $("#corpoModal").html("")
+                alert(data.mensagem)
+            });
+        }
+    </script>
+}

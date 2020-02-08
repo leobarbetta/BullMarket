@@ -1,0 +1,97 @@
+﻿@model IEnumerable<BullMarket.Web.Models.Corretagem>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Data
+            </th>
+            <th>
+                Ação
+            </th>
+            <th>
+                Corretora
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                Qtde
+            </th>
+            <th>
+                Compra
+            </th>
+            <th>
+                Atual
+            </th>
+            <th>
+                Total Compra
+            </th>
+            <th>
+                Total atual
+            </th>
+            <th>
+                Diferença
+            </th>
+            <th>
+                Retorno
+            </th>
+            <th>
+                Lucro
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Custos)
+            </th>
+            <th>Editar</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.DataCompra.ToShortDateString()
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Acao.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Corretora)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantidade)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ValorCompra)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ValorAgora)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ValorTotalCompra)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ValorTotalAgora)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Diferenca)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PorcentagemRetorno)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LucroReal)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Custos)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
